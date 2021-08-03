@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Getter
@@ -21,7 +22,7 @@ public class ClassicalPeriod {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonIgnore
+    //@JsonIgnore
     private long id;
 
     @NotNull (message = "You have to provide a name for the period!")
@@ -41,5 +42,16 @@ public class ClassicalPeriod {
     @OneToMany (mappedBy = "classicalPeriod")
     private List<Composer> composers;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ClassicalPeriod)) return false;
+        ClassicalPeriod that = (ClassicalPeriod) o;
+        return yearOfBeginning == that.yearOfBeginning && yearOfEnd == that.yearOfEnd && Objects.equals(name, that.name);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, yearOfBeginning, yearOfEnd);
+    }
 }

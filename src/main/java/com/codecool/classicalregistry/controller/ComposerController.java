@@ -1,7 +1,6 @@
 package com.codecool.classicalregistry.controller;
 
 
-import com.codecool.classicalregistry.model.Composer;
 import com.codecool.classicalregistry.model.DTO.ComposerDTO;
 import com.codecool.classicalregistry.model.DTO.CompositionDTO;
 import com.codecool.classicalregistry.service.ComposerService;

@@ -24,7 +24,7 @@ public class ClassicalPeriodController {
     @Autowired
     private ClassicalPeriodService classicalPeriodService;
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map<String, String> handleException(MethodArgumentNotValidException methodArgumentNotValidException) {
 

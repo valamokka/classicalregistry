@@ -1,3 +1,8 @@
+drop table if exists classical_period cascade;
+drop table if exists composer cascade;
+drop table if exists composition cascade;
+
+
 create table classical_period (
 id long  identity not null primary key,
 name varchar(50),
@@ -18,3 +23,4 @@ id long  identity not null primary key,
 title varchar(150),
 composer_id long
 );
+
