@@ -6,6 +6,7 @@ import com.codecool.classicalregistry.exceptions.DatabaseIsEmptyException;
 import com.codecool.classicalregistry.exceptions.EntryNotFoundException;
 import com.codecool.classicalregistry.model.ClassicalPeriod;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class ClassicalPeriodService {
 
     public ClassicalPeriod getClassicalPeriodById(long id) {
         return classicalPeriodRepository.findById(id).
-                orElseThrow(EntryNotFoundException::new);
+                orElseThrow(() -> new EmptyResultDataAccessException(0));
     }
 
     public void addClassicalPeriod(ClassicalPeriod classicalPeriod) {

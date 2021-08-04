@@ -50,7 +50,7 @@ public class ClassicalPeriodIntegrationTest {
         HttpEntity<ClassicalPeriod> httpEntity = new HttpEntity<>(
                 new ClassicalPeriod(0, "Modern", 1900, 2000, new ArrayList<>()), headers);
 
-        ResponseEntity<Long> postResponse = restTemplate.postForEntity(BASE_URL+port+"/period", httpEntity, Long.class);
+        ResponseEntity<String> postResponse = restTemplate.postForEntity(BASE_URL+port+"/period", httpEntity, String.class);
         Assertions.assertEquals(HttpStatus.OK, postResponse.getStatusCode());
 
         ClassicalPeriod classicalPeriod = restTemplate.getForObject(BASE_URL+port+"/period/5", ClassicalPeriod.class);
@@ -81,9 +81,11 @@ public class ClassicalPeriodIntegrationTest {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        HttpEntity<ClassicalPeriod> httpEntity = new HttpEntity<>(new ClassicalPeriod(0, "Modern", 1900, 2000, new ArrayList<>()), headers);
-        ResponseEntity<Long> postResponse = restTemplate.postForEntity(BASE_URL+port+"/period", httpEntity, Long.class);
+        HttpEntity<ClassicalPeriod> httpEntity = new HttpEntity<>(
+                new ClassicalPeriod(0, "Modern", 1900, 2000, new ArrayList<>()), headers);
+        ResponseEntity<String> postResponse = restTemplate.postForEntity(BASE_URL+port+"/period", httpEntity, String.class);
         Assertions.assertEquals(HttpStatus.OK, postResponse.getStatusCode());
+
         ResponseEntity<ClassicalPeriod[]> responseEntityBeforeDeleting = restTemplate.getForEntity(BASE_URL+port+"/period", ClassicalPeriod[].class);
         List<ClassicalPeriod> beforeDeleting = Arrays.asList(responseEntityBeforeDeleting.getBody());
         Assertions.assertEquals(5, beforeDeleting.size());

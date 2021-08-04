@@ -5,6 +5,7 @@ import com.codecool.classicalregistry.model.DTO.CompositionDTO;
 import org.flywaydb.core.Flyway;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -42,14 +43,14 @@ public class ComposerIntegrationTest {
     }
 
     @Test
-    public void testPostEndPointAddOneComposer() {
+    public void testPostEndPoint_AddOneComposer() {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpEntity<ComposerDTO> httpEntity = new HttpEntity<>(
                 new ComposerDTO(0, "Antonio Vivaldi", "italian", 1678, 2), headers);
 
-        ResponseEntity<Long> postResponse = restTemplate.postForEntity(BASE_URL + port + "/composer", httpEntity, Long.class);
+        ResponseEntity<String> postResponse = restTemplate.postForEntity(BASE_URL + port + "/composer", httpEntity, String.class);
         Assertions.assertEquals(HttpStatus.OK, postResponse.getStatusCode());
 
         ComposerDTO composerDTO = restTemplate.getForObject(BASE_URL + port + "/composer/7", ComposerDTO.class);
@@ -63,7 +64,6 @@ public class ComposerIntegrationTest {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         ComposerDTO composerDTO = restTemplate.getForObject(BASE_URL + port + "/composer/1", ComposerDTO.class);
-
         composerDTO.setName("Changed Johann Sebastian Bach");
 
         HttpEntity<ComposerDTO> httpEntity = new HttpEntity<>(composerDTO, headers);

@@ -7,6 +7,7 @@ import com.codecool.classicalregistry.service.ComposerService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
@@ -50,20 +51,23 @@ public class ComposerController {
 
     @PostMapping
     @ApiOperation(value = "This endpoint adds a new composer to the database")
-    public void addComposer(@Valid @RequestBody ComposerDTO composerDTO) {
+    public ResponseEntity<String> addComposer(@Valid @RequestBody ComposerDTO composerDTO) {
         composerService.addComposer(composerDTO);
+        return ResponseEntity.ok("Entity successfully added!");
     }
 
     @PutMapping("/{id}")
     @ApiOperation(value = "This endpoint updates the composer if it exists in the database, or adds it, if it does not")
-    public void updateComposerById(@Valid @RequestBody ComposerDTO composerDTO, @PathVariable long id) {
+    public ResponseEntity<String> updateComposerById(@Valid @RequestBody ComposerDTO composerDTO, @PathVariable long id) {
         composerService.updateComposerById(composerDTO, id);
+        return ResponseEntity.ok("Entity has been successfully updated!");
     }
 
     @DeleteMapping("/{id}")
     @ApiOperation(value = "This endpoint deletes one composer which has the same ID passed in as a parameter from the database")
-    public void deleteComposerById(@PathVariable long id) {
+    public ResponseEntity<String> deleteComposerById(@PathVariable long id) {
         composerService.deleteComposerById(id);
+        return ResponseEntity.ok("Entity has been successfully deleted!");
     }
 
     @GetMapping("/{id}/composition")
@@ -71,4 +75,5 @@ public class ComposerController {
     public List<CompositionDTO> findAllCompositionsByComposerId (@PathVariable long id) {
         return composerService.findAllCompositionsByComposerId(id);
     }
+
 }

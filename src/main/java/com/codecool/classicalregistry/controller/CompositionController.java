@@ -6,6 +6,7 @@ import com.codecool.classicalregistry.service.CompositionService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
@@ -49,20 +50,23 @@ public class CompositionController {
 
     @PostMapping
     @ApiOperation(value = "This endpoint adds a new composition to the database")
-    public void addComposition(@Valid @RequestBody CompositionDTO compositionDTO) {
+    public ResponseEntity<String> addComposition(@Valid @RequestBody CompositionDTO compositionDTO) {
         compositionService.addComposition(compositionDTO);
+        return ResponseEntity.ok("Entity successfully added!");
     }
 
     @PutMapping("/{id}")
     @ApiOperation(value = "This endpoint updates the composition if it exists in the database, or adds it, if it does not")
-    public void updateCompositionById(@Valid @RequestBody CompositionDTO compositionDTO, @PathVariable long id) {
+    public ResponseEntity<String> updateCompositionById(@Valid @RequestBody CompositionDTO compositionDTO, @PathVariable long id) {
         compositionService.updateCompositionById(compositionDTO, id);
+        return ResponseEntity.ok("Entity has been successfully updated!");
     }
 
     @DeleteMapping("/{id}")
     @ApiOperation(value = "This endpoint deletes one composition which has the same ID passed in as a parameter from the database")
-    public void deleteCompositionById(@PathVariable long id) {
+    public ResponseEntity<String> deleteCompositionById(@PathVariable long id) {
         compositionService.deleteCompositionById(id);
+        return ResponseEntity.ok("Entity has been successfully deleted!");
     }
 
 }

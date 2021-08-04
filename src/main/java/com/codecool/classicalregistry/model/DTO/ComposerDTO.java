@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
@@ -33,6 +34,7 @@ public class ComposerDTO {
     private String nationality;
 
     @NotNull(message = "You have to provide a year of birth for this composer!")
+    @Max(value = 2021, message = "Year of birth cannot be in the future!")
     private int yearOfBirth;
 
     @NotNull(message = "You have to provide an ID of a classical period!")

@@ -12,6 +12,7 @@ import com.codecool.classicalregistry.model.Composition;
 import com.codecool.classicalregistry.model.DTO.ComposerDTO;
 import com.codecool.classicalregistry.model.DTO.CompositionDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class ComposerService {
 
     public ComposerDTO getComposerById(long id) {
         return composerRepository.findById(id).
-                orElseThrow(EntryNotFoundException::new).
+                orElseThrow(() -> new EmptyResultDataAccessException(0)).
                 toDTO();
     }
 
@@ -70,4 +71,5 @@ public class ComposerService {
                 map(Composition::toDTO).
                 collect(Collectors.toList());
     }
+
 }

@@ -6,6 +6,7 @@ import com.codecool.classicalregistry.service.ClassicalPeriodService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -24,7 +25,7 @@ public class ClassicalPeriodController {
     @Autowired
     private ClassicalPeriodService classicalPeriodService;
 
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map<String, String> handleException(MethodArgumentNotValidException methodArgumentNotValidException) {
 
@@ -51,20 +52,23 @@ public class ClassicalPeriodController {
 
     @PostMapping
     @ApiOperation(value = "This endpoint adds a new classical period to the database")
-    public void addClassicalPeriod(@Valid @RequestBody ClassicalPeriod classicalPeriod, BindingResult bindingResult) {
+    public ResponseEntity<String> addClassicalPeriod(@Valid @RequestBody ClassicalPeriod classicalPeriod) {
             classicalPeriodService.addClassicalPeriod(classicalPeriod);
+            return ResponseEntity.ok("Entity successfully added!");
 
     }
 
     @PutMapping("/{id}")
     @ApiOperation(value = "This endpoint updates the classical period if it exists in the database, or adds it, if it does not")
-    public void updateClassicalPeriodById(@Valid @RequestBody ClassicalPeriod classicalPeriod, @PathVariable long id) {
+    public ResponseEntity<String> updateClassicalPeriodById(@Valid @RequestBody ClassicalPeriod classicalPeriod, @PathVariable long id) {
         classicalPeriodService.updateClassicalPeriodById(classicalPeriod, id);
+        return ResponseEntity.ok("Entity has been successfully updated!");
     }
 
     @DeleteMapping("/{id}")
     @ApiOperation(value = "This endpoint deletes one classical period which has the same ID passed in as a parameter from the database")
-    public void deleteClassicalPeriodById(@PathVariable long id) {
-        classicalPeriodService.deleteClassicalPeriodById(id);
+    public ResponseEntity<String> deleteClassicalPeriodById(@PathVariable long id) {
+       classicalPeriodService.deleteClassicalPeriodById(id);
+       return ResponseEntity.ok("Entity has been successfully deleted!");
     }
 }
