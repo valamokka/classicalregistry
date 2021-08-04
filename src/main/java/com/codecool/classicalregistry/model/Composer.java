@@ -20,14 +20,8 @@ public class Composer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
     private long id;
-
-   // @NotNull(message = "You have to provide a name for this composer!")
     private String name;
-
-    //@NotNull(message = "You have to provide a nationality for this composer!")
     private String nationality;
-
-   // @NotNull(message = "You have to provide a year of birth for this composer!")
     private int yearOfBirth;
 
     @ManyToOne

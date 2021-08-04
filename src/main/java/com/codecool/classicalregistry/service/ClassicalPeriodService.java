@@ -3,7 +3,6 @@ package com.codecool.classicalregistry.service;
 
 import com.codecool.classicalregistry.dao.repository.ClassicalPeriodRepository;
 import com.codecool.classicalregistry.exceptions.DatabaseIsEmptyException;
-import com.codecool.classicalregistry.exceptions.EntryNotFoundException;
 import com.codecool.classicalregistry.model.ClassicalPeriod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;

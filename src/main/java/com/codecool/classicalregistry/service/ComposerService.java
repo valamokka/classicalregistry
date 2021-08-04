@@ -6,7 +6,6 @@ import com.codecool.classicalregistry.dao.repository.ComposerRepository;
 import com.codecool.classicalregistry.dao.repository.CompositionRepository;
 import com.codecool.classicalregistry.exceptions.DatabaseIsEmptyException;
 import com.codecool.classicalregistry.exceptions.EntityDependencyException;
-import com.codecool.classicalregistry.exceptions.EntryNotFoundException;
 import com.codecool.classicalregistry.model.Composer;
 import com.codecool.classicalregistry.model.Composition;
 import com.codecool.classicalregistry.model.DTO.ComposerDTO;

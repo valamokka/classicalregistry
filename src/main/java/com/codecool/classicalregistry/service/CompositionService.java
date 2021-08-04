@@ -4,10 +4,10 @@ import com.codecool.classicalregistry.dao.repository.ComposerRepository;
 import com.codecool.classicalregistry.dao.repository.CompositionRepository;
 import com.codecool.classicalregistry.exceptions.DatabaseIsEmptyException;
 import com.codecool.classicalregistry.exceptions.EntityDependencyException;
-import com.codecool.classicalregistry.exceptions.EntryNotFoundException;
 import com.codecool.classicalregistry.model.Composition;
 import com.codecool.classicalregistry.model.DTO.CompositionDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,7 +33,7 @@ public class CompositionService {
 
     public CompositionDTO getCompositionById(long id) {
         return compositionRepository.findById(id).
-                orElseThrow(EntryNotFoundException::new).
+                orElseThrow(() -> new EmptyResultDataAccessException(0)).
                 toDTO();
     }
 
