@@ -6,7 +6,7 @@ classical periods, and the compositions they made.
 **Running the application from terminal:**
 1. Open the terminal
 2. Step into the root directory of the project
-3. Type in the following command: java -jar target/classicalregistry-0.0.1-SNAPSHOT.jar
+3. Type in the following command: java -jar classicalregistry.jar
 
 The application starts.
 
