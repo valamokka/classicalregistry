@@ -17,11 +17,7 @@ public class ClassicalPeriodService {
     private ClassicalPeriodRepository classicalPeriodRepository;
 
     public List<ClassicalPeriod> listAllClassicalPeriods() {
-        List<ClassicalPeriod> allClassicalPeriods = classicalPeriodRepository.findAll();
-        if (allClassicalPeriods.isEmpty()) {
-            throw new DatabaseIsEmptyException();
-        }
-        return allClassicalPeriods;
+        return classicalPeriodRepository.findAll();
     }
 
     public ClassicalPeriod getClassicalPeriodById(long id) {

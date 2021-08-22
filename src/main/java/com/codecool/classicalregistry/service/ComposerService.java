@@ -29,13 +29,7 @@ public class ComposerService {
     private CompositionRepository compositionRepository;
 
     public List<ComposerDTO> listAllComposers() {
-        List<ComposerDTO> allComposersInDatabase = composerRepository.findAll().stream().
-                                                                                map(Composer::toDTO).
-                                                                                collect(Collectors.toList());
-        if(allComposersInDatabase.isEmpty()) {
-            throw new DatabaseIsEmptyException();
-        }
-        return allComposersInDatabase;
+        return composerRepository.findAll().stream().map(Composer::toDTO).collect(Collectors.toList());
     }
 
     public ComposerDTO getComposerById(long id) {
